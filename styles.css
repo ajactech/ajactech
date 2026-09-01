@@ -132,12 +132,12 @@ body {
     color: var(--text-muted);
     text-decoration: none;
     font-size: 0.95rem;
-    font-weight: 600;
+    font-weight: 700;
     transition: color 0.2s ease;
 }
 
 .nav-links a:hover {
-    color: var(--text-main);
+    color: var(--accent-secondary);
 }
 
 /* Hamburger Icon Toggle */
@@ -161,6 +161,20 @@ body {
     background-color: var(--text-main);
     border-radius: 3px;
     transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0.1);
+}
+
+.nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 /* Botones */
@@ -254,15 +268,15 @@ body {
 }
 
 .iso-wrapper {
-    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .iso-img {
-    max-width: 200px;
+    max-width: 400px;
     height: auto;
+    border-radius: 16px;
 }
 
 /* Secciones Generales */
@@ -460,16 +474,33 @@ body {
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid var(--glass-border);
-        border-radius: 20px;
+        border-radius: 30px;
         padding: 24px;
+        margin: 0 30px;
         flex-direction: column;
-        gap: 20px;
-        display: none;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        gap: 10px;
+        display: flex;
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transform: translateY(-12px);
+        transition: max-height 0.35s ease, opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+        padding: 16px;
     }
 
     .nav-toggle:checked~.nav-links {
-        display: flex;
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        max-height: 420px;
+        transform: translateY(0);
     }
 
     .hero-card {
